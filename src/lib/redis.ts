@@ -5,15 +5,12 @@ declare global {
 }
 
 function createRedisClient(): Redis {
-  const client = new Redis({
-    username: 'default',
-    password: process.env.REDIS_PASSWORD,
-    host: process.env.REDIS_HOST,
-    port: Number(process.env.REDIS_PORT),
-    lazyConnect: false,
+  const client = new Redis(process.env.REDIS_URL!, {
+    tls: { rejectUnauthorized: false },
     maxRetriesPerRequest: null,
     enableOfflineQueue: true,
     connectTimeout: 15000,
+    lazyConnect: false,
   });
 
   client.on('error', (err) => console.error('[Redis] Error:', err.message));
