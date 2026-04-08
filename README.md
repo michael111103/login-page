@@ -1,6 +1,6 @@
 # Javis Auth
 
-A simple login system built for the PT. Javis Teknologi Albarokah Web Programmer Challenge.
+A simple login system built for the PT. Javis Teknologi Albarokah Web Programmer Assessment.
 
 ## Tech Stack
 
@@ -21,7 +21,7 @@ A simple login system built for the PT. Javis Teknologi Albarokah Web Programmer
 ### Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/javis-auth.git
+git clone https://github.com/michael111103/loginpage.git
 cd javis-auth
 npm install
 cp .env.example .env.local
