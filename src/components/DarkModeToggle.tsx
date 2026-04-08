@@ -7,8 +7,13 @@ export default function DarkModeToggle() {
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDark(stored === 'dark' || (!stored && prefersDark));
+    const dark = stored === 'dark';
+    setIsDark(dark);
+    if (dark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   }, []);
 
   const toggle = () => {
@@ -31,7 +36,7 @@ export default function DarkModeToggle() {
                  border transition-all duration-200 hover:scale-105 active:scale-95"
       style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-card)' }}
     >
-      <span className="text-lg select-none">{isDark ? '☀️' : '🌙'}</span>
+      <span className="text-lg select-none">{isDark ? '🌙' : '☀️'}</span>
     </button>
   );
 }
