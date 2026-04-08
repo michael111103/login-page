@@ -5,39 +5,24 @@ declare global {
 }
 
 function createRedisClient(): Redis {
-  const url = process.env.REDIS_URL || 'redis://localhost:6379';
-
-  const useTLS =
-    url.startsWith('rediss://') ||
-    url.includes('redislabs') ||
-    url.includes('upstash');
-
-  const client = new Redis(url, {
-    tls: useTLS ? { rejectUnauthorized: false } : undefined,
+  const client = new Redis({
+    username: 'default',
+    password: process.env.REDIS_PASSWORD,
+    host: process.env.REDIS_HOST,
+    port: Number(process.env.REDIS_PORT),
+    tls: {},
     lazyConnect: false,
     maxRetriesPerRequest: null,
     enableOfflineQueue: true,
     connectTimeout: 15000,
-    commandTimeout: 10000,
-    retryStrategy(times) {
-      if (times > 3) return null;
-      return Math.min(times * 300, 1000);
-    },
   });
 
-  client.on('error', (err) => {
-    console.error('[Redis] Connection error:', err.message);
-  });
-
-  client.on('connect', () => {
-    console.log('[Redis] Connected successfully');
-  });
+  client.on('error', (err) => console.error('[Redis] Error:', err.message));
+  client.on('connect', () => console.log('[Redis] Connected!'));
 
   return client;
 }
 
 export const redis: Redis = globalThis.__redis ?? createRedisClient();
-
 globalThis.__redis = redis;
-
 export default redis;
