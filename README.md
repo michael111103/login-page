@@ -1,6 +1,6 @@
 # Javis Auth
 
-A simple login system built for the PT. Javis Teknologi Albarokah Web Programmer Assessment.
+A simple login system built for the PT. Javis Teknologi Albarokah Web Programmer Assessment by Michael Ivanov.
 
 ## Tech Stack
 
