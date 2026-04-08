@@ -21,8 +21,8 @@ A simple login system built for the PT. Javis Teknologi Albarokah Web Programmer
 ### Installation
 
 ```bash
-git clone https://github.com/michael111103/loginpage.git
-cd javis-auth
+git clone https://github.com/michael111103/login-page.git
+cd login-page
 npm install
 cp .env.example .env.local
 ```
